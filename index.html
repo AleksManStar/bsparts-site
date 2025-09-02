@@ -197,6 +197,32 @@
         document.addEventListener('DOMContentLoaded', () => {
             setLanguage('ru');
         });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+    const gallery = document.querySelector('.gallery');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    // Adjust the imageWidth calculation to be more robust
+    const imageWidth = document.querySelector('.gallery img').offsetWidth + 20;
+    let scrollPosition = 0;
+    
+    nextBtn.addEventListener('click', () => {
+        const totalImages = document.querySelectorAll('.gallery img').length;
+        if (scrollPosition < (totalImages - 1) * imageWidth) {
+            scrollPosition += imageWidth;
+            gallery.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (scrollPosition > 0) {
+            scrollPosition -= imageWidth;
+            gallery.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+    });
+});
+
     </script>
 
 </body>
