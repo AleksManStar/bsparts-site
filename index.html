@@ -1,178 +1,191 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Каталог автозапчастей</title>
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #121212;
-    color: #fff;
-  }
+    <title>AutoParts Original - Главная</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
 
-  /* Шапка сайта */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #1f1f1f;
-  }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-  header h1 {
-    margin: 0;
-    font-size: 1.5em;
-  }
+        nav a {
+            margin-right: 20px;
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: bold;
+        }
 
-  nav a {
-    color: #ccc;
-    text-decoration: none;
-    margin-left: 20px;
-  }
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
 
-  /* Главный блок */
-  .hero {
-    padding: 40px 20px;
-    text-align: center;
-    background-color: #1f1f1f;
-  }
+        .language-switcher button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            color: #666;
+        }
 
-  .hero h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-  }
+        .language-switcher button.active {
+            color: #0056b3;
+        }
 
-  .search-box {
-    margin-bottom: 30px;
-  }
+        main {
+            text-align: center;
+            padding: 50px;
+        }
 
-  input[type="text"] {
-    padding: 10px;
-    width: 300px;
-    max-width: 90%;
-    border: none;
-    border-radius: 4px;
-  }
+        h1 {
+            color: #0056b3;
+            font-size: 48px;
+        }
 
-  /* Популярные категории */
-  .categories {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-  }
+        p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
 
-  .category {
-    background-color: #2a2a2a;
-    padding: 20px;
-    border-radius: 8px;
-    width: 150px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
+        .carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            position: relative;
+        }
 
-  .category:hover {
-    background-color: #3a3a3a;
-  }
+        .carousel {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            animation: rotate 30s linear infinite;
+        }
 
-  /* Контактный блок */
-  .cta {
-    background-color: #2a2a2a;
-    padding: 30px 20px;
-    text-align: center;
-  }
+        .carousel-item {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: #ccc;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
 
-  .cta h3 {
-    margin-bottom: 15px;
-  }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-  /* Карточки товаров */
-  .catalog {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
+        /* Позиционирование элементов карусели */
+        .carousel-item:nth-child(1) { transform: rotate(0deg) translate(200px) rotate(0deg); }
+        .carousel-item:nth-child(2) { transform: rotate(60deg) translate(200px) rotate(-60deg); }
+        .carousel-item:nth-child(3) { transform: rotate(120deg) translate(200px) rotate(-120deg); }
+        .carousel-item:nth-child(4) { transform: rotate(180deg) translate(200px) rotate(-180deg); }
+        .carousel-item:nth-child(5) { transform: rotate(240deg) translate(200px) rotate(-240deg); }
+        .carousel-item:nth-child(6) { transform: rotate(300deg) translate(200px) rotate(-300deg); }
 
-  .product-card {
-    background-color: #1f1f1f;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .product-image {
-    width: 100%;
-    height: 150px;
-    background-color: #333;
-  }
-
-  .product-details {
-    padding: 15px;
-    flex: 1;
-  }
-
-  .product-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  .product-price {
-    color: #00ffcc;
-    margin-bottom: 15px;
-  }
-
-  .product-buttons {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  button.primary {
-    background-color: #00ffcc;
-    color: #000;
-  }
-
-  button.secondary {
-    background-color: #333;
-    color: #fff;
-  }
-</style>
+        /* CSS-анимация вращения */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>AutoParts</h1>
-  <nav>
-    <a href="#">Главная</a>
-    <a href="#">Каталог</a>
-    <a href="#">О компании</a>
-    <a href="#">Контакты</a>
-  </nav>
-</header>
+    <header>
+        <nav>
+            <a href="index.html" data-lang="home">Главная</a>
+            <a href="#" data-lang="catalog">Каталог</a>
+            <a href="#" data-lang="about">О нас</a>
+            <a href="#" data-lang="contacts">Контакты</a>
+        </nav>
+        <div class="language-switcher">
+            <button onclick="setLanguage('ru')" class="active">RU</button>
+            <button onclick="setLanguage('en')">EN</button>
+            <button onclick="setLanguage('de')">DE</button>
+        </div>
+    </header>
 
-<section class="hero">
-  <h2>Качественные автозапчасти оригинал с гарантией</h2>
-  <div class="search-box">
-    <input type="text" placeholder="Поиск по VIN, марке или модели" />
-  </div>
-  <div class="categories">
-    <div class="category">Двигатель</div>
-    <div class="category">Тормозная система</div>
-    <div class="category">Подвеска</div>
-    <div class="category">Трансмиссия</div>
-  </div>
-</section>
+    <main>
+        <h1 data-lang="title">AutoParts Original</h1>
+        <p data-lang="description">Ваш надёжный поставщик оригинальных запчастей для автомобилей.</p>
 
-<section class="cta">
-  <h
+        <div class="carousel-container">
+            <div class="carousel">
+                <div class="carousel-item"><img src="https://via.placeholder.com/150/0056b3/FFFFFF/?text=Part+1" alt="Part 1"></div>
+                <div class="carousel-item"><img src="https://via.placeholder.com/150/FF9900/FFFFFF/?text=Part+2" alt="Part 2"></div>
+                <div class="carousel-item"><img src="https://via.placeholder.com/150/008000/FFFFFF/?text=Part+3" alt="Part 3"></div>
+                <div class="carousel-item"><img src="https://via.placeholder.com/150/800080/FFFFFF/?text=Part+4" alt="Part 4"></div>
+                <div class="carousel-item"><img src="https://via.placeholder.com/150/FF4500/FFFFFF/?text=Part+5" alt="Part 5"></div>
+                <div class="carousel-item"><img src="https://via.placeholder.com/150/1E90FF/FFFFFF/?text=Part+6" alt="Part 6"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const translations = {
+            'ru': {
+                'home': 'Главная',
+                'catalog': 'Каталог',
+                'about': 'О нас',
+                'contacts': 'Контакты',
+                'title': 'AutoParts Original',
+                'description': 'Ваш надёжный поставщик оригинальных запчастей для автомобилей.'
+            },
+            'en': {
+                'home': 'Home',
+                'catalog': 'Catalog',
+                'about': 'About Us',
+                'contacts': 'Contacts',
+                'title': 'AutoParts Original',
+                'description': 'Your reliable supplier of original car parts.'
+            },
+            'de': {
+                'home': 'Startseite',
+                'catalog': 'Katalog',
+                'about': 'Über uns',
+                'contacts': 'Kontakt',
+                'title': 'AutoParts Original',
+                'description': 'Ihr zuverlässiger Lieferant für Original-Ersatzteile.'
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.language-switcher button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.language-switcher button[onclick="setLanguage('${lang}')"]`).classList.add('active');
+        }
+
+        // Устанавливаем язык по умолчанию
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('ru');
+        });
+    </script>
+
+</body>
+</html>
