@@ -61,36 +61,41 @@
             margin: 0 auto 50px;
         }
 
-        .carousel-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 400px;
-            position: relative;
-        }
+.gallery-container {
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+}
 
-        .carousel {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            animation: rotate 30s linear infinite;
-        }
+.gallery {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
 
-        .carousel-item {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background-color: #ccc;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-        }
+.gallery img {
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+    border-radius: 10px;
+    margin: 0 10px;
+}
 
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+.gallery-controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.gallery-controls button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
 
         /* Позиционирование элементов карусели */
         .carousel-item:nth-child(1) { transform: rotate(0deg) translate(200px) rotate(0deg); }
