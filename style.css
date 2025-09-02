@@ -1,3 +1,42 @@
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" data-lang="home">Главная</a>
+            <a href="#" data-lang="catalog">Каталог</a>
+            <a href="#" data-lang="about">О нас</a>
+            <a href="contacts.html" data-lang="contacts">Контакты</a>
+        </nav>
+        <div class="language-switcher">
+            <button onclick="setLanguage('ru')" class="active">RU</button>
+            <button onclick="setLanguage('en')">EN</button>
+            <button onclick="setLanguage('de')">DE</button>
+        </div>
+    </header>
+
+<main>
+    <h1 data-lang="title">AutoParts Original</h1>
+    <p data-lang="description">Ваш надёжный поставщик оригинальных запчастей для автомобилей.</p>
+
+<div class="gallery-container">
+    <div class="gallery">
+        <img src="https://via.placeholder.com/300x200/0056b3/FFFFFF/?text=Part+1" alt="Part 1">
+        <img src="https://via.placeholder.com/300x200/FF9900/FFFFFF/?text=Part+2" alt="Part 2">
+        <img src="https://via.placeholder.com/300x200/008000/FFFFFF/?text=Part+3" alt="Part 3">
+        <img src="https://via.placeholder.com/300x200/800080/FFFFFF/?text=Part+4" alt="Part 4">
+        <img src="https://via.placeholder.com/300x200/FF4500/FFFFFF/?text=Part+5" alt="Part 5">
+        <img src="https://via.placeholder.com/300x200/1E90FF/FFFFFF/?text=Part+6" alt="Part 6">
+    </div>
+</div>
+<div class="gallery-controls">
+    <button id="prevBtn">Назад</button>
+    <button id="nextBtn">Вперёд</button>
+</div>
+
+    </div>
+</main>
+
 <style>
         body {
             font-family: Arial, sans-serif;
