@@ -33,6 +33,76 @@
             <button type="submit">Отправить</button>
         </form>
     </main>
+     <script>
+        const translations = {
+            'ru': {
+                'home': 'Главная',
+                'catalog': 'Каталог',
+                'about': 'О нас',
+                'contacts': 'Контакты',
+       
+            },
+            'en': {
+                'home': 'Home',
+                'catalog': 'Catalog',
+                'about': 'About Us',
+                'contacts': 'Contacts',
+
+            },
+            'de': {
+                'home': 'Startseite',
+                'catalog': 'Katalog',
+                'about': 'Über uns',
+                'contacts': 'Kontakt',
+
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.language-switcher button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.language-switcher button[onclick="setLanguage('${lang}')"]`).classList.add('active');
+        }
+
+        // Устанавливаем язык по умолчанию
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('ru');
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+    const gallery = document.querySelector('.gallery');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    // Adjust the imageWidth calculation to be more robust
+    const imageWidth = document.querySelector('.gallery img').offsetWidth + 20;
+    let scrollPosition = 0;
+    
+    nextBtn.addEventListener('click', () => {
+        const totalImages = document.querySelectorAll('.gallery img').length;
+        if (scrollPosition < (totalImages - 1) * imageWidth) {
+            scrollPosition += imageWidth;
+            gallery.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (scrollPosition > 0) {
+            scrollPosition -= imageWidth;
+            gallery.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+    });
+});
+
+    </script>
     
 </body>
 </html>
