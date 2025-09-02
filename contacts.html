@@ -35,4 +35,77 @@
     
 </body>
 </html>
+ <script>
+        const translations = {
+            'ru': {
+                'home': 'Главная',
+                'catalog': 'Каталог',
+                'about': 'О нас',
+                'contacts': 'Контакты',
+                'title': 'AutoParts Original',
+                'description': 'Ваш надёжный поставщик оригинальных запчастей для автомобилей.'
+            },
+            'en': {
+                'home': 'Home',
+                'catalog': 'Catalog',
+                'about': 'About Us',
+                'contacts': 'Contacts',
+                'title': 'AutoParts Original',
+                'description': 'Your reliable supplier of original car parts.'
+            },
+            'de': {
+                'home': 'Startseite',
+                'catalog': 'Katalog',
+                'about': 'Über uns',
+                'contacts': 'Kontakt',
+                'title': 'AutoParts Original',
+                'description': 'Ihr zuverlässiger Lieferant für Original-Ersatzteile.'
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(element => {
+                const key = element.getAttribute('data-lang');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            document.querySelectorAll('.language-switcher button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.language-switcher button[onclick="setLanguage('${lang}')"]`).classList.add('active');
+        }
+
+        // Устанавливаем язык по умолчанию
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('ru');
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+    const gallery = document.querySelector('.gallery');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    // Adjust the imageWidth calculation to be more robust
+    const imageWidth = document.querySelector('.gallery img').offsetWidth + 20;
+    let scrollPosition = 0;
+    
+    nextBtn.addEventListener('click', () => {
+        const totalImages = document.querySelectorAll('.gallery img').length;
+        if (scrollPosition < (totalImages - 1) * imageWidth) {
+            scrollPosition += imageWidth;
+            gallery.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+    });
+
+    prevBtn.addEventListener('click', () => {
+        if (scrollPosition > 0) {
+            scrollPosition -= imageWidth;
+            gallery.style.transform = `translateX(-${scrollPosition}px)`;
+        }
+    });
+});
+
+    </script>
 
